@@ -1,0 +1,19 @@
+{% extends 'polls/base.html' %}
+{% block content %}
+
+{% if latest_question_list %}
+  <ul>
+    {% for question in latest_question_list %}
+    <li>
+      <!-- <a href="/polls/ { { question.id } } /"> { { question.question_text } } </a> -->
+      <a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a>
+      <!-- 하드코딩의 url을 언제나 url 변화 가능하도록 바꿔준것 -->
+<!-- 뜻은 polls 앱에 있는 detail이라는 pattern 을 가진 url pattern 을 우리가 불러와 활자로 적어주는데, 
+  이 detail에는 question.id를 숫자로(int) 넣어주어야함 -->
+    </li>
+    {% endfor %}
+  </ul>
+{% else %}
+  <p>No polls are available.</p>
+{% endif %}
+{% endblock %}
